@@ -7,7 +7,13 @@ require "active_job/railtie"
 require "active_model/railtie"
 require "active_record/railtie"
 require "active_storage/engine"
-require "sprockets/railtie"
+
+# Allow for optional inclusion of rails-sprockets sprockets/railtie
+begin
+  require "sprockets/railtie"
+rescue LoadError
+  raise if defined?(Spree::Backend) || Rails.env.test?
+end
 
 require 'active_support/deprecation'
 require 'spree/deprecated_instance_variable_proxy'
