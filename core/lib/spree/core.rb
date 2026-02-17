@@ -12,7 +12,7 @@ require "active_storage/engine"
 begin
   require "sprockets/railtie"
 rescue LoadError
-  raise if defined?(Spree::Backend) || Rails.env.test?
+  raise if defined?(Spree::Backend)
 end
 
 require 'active_support/deprecation'
